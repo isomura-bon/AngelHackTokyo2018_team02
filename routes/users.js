@@ -1,9 +1,84 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+var UserInfo = require('../models/user');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* POST users listing. */
+/* コマンドから入力する用のメソッド */
+router.post('/regist', function(request, response) {
+    console.log("catch the new regist request");
+
+    console.log(request.body);
+
+    var username = request.body.username;
+    var userid   = request.body.userid;
+    var gcm	 = request.body.gcm;
+    var status	 = request.body.status;
+    var disease	 = request.body.disease;
+    var jobIndustry = request.body.jobIndustry;
+    
+    UserInfo.find({ "userid" : userid }, function(err, result){
+	if (err)	      
+	    console.log(err); 
+
+	// 新規登録
+	if (result.length == 0){
+	    var user = new UserInfo();
+
+	    user.username = username;
+	    user.userid   = userid;
+	    user.gcm      = gcm;
+	    user.status   = status;
+	    user.disease  = disease;
+	    user.jobIndustry = jobIndustry;
+
+	    user.save(function(err){
+		if (err) console.log(err);
+	    });
+	};
+	response.json({'status':1});
+    });
+});
+
+router.get('/profile', function(request, response){
+
+    const userid = request.query.userid;
+    const gcm    = request.query.gcm;
+
+    UserInfo.find({ "userid" : userid }, function(err, result){
+	if (err)	      
+	    console.log(err); 
+
+	if (result.length != 1){
+	    response.json({'status':2});
+	}
+	else{
+	    UserInfo.update( 
+		{ 'usesrid' : result[0].userid }, 
+		{ $set: { 'gcm' : gcm  }
+		}, function(err, result){
+		    if (err)
+			console.log(err);
+		});
+
+	    response.json({
+		'username' : result[0].username,
+		'userid'   : result[0].userid,
+		'gcm'      : gcm,
+		'status'   : result[0].status,		
+		'disease'  : result[0].disease,
+		'jobIndustry' : result[0].jobIndustry
+	    });
+	}
+	
+
+	response.render('profile', {
+	    'username' : result[0].username,
+	    'status'   : result[0].status,		
+	    'disease'  : result[0].disease,
+	    'jobIndustry' : result[0].jobIndustry
+	});
+    });
+
 });
 
 module.exports = router;
