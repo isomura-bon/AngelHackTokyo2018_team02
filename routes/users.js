@@ -60,23 +60,29 @@ router.get('/profile', function(request, response){
 			console.log(err);
 		});
 
-	    response.json({
-		'username' : result[0].username,
-		'userid'   : result[0].userid,
-		'gcm'      : gcm,
-		'status'   : result[0].status,		
-		'disease'  : result[0].disease,
-		'jobIndustry' : result[0].jobIndustry
-	    });
-	}
-	
-
 	response.render('profile', {
 	    'username' : result[0].username,
-	    'status'   : result[0].status,		
+	    // 'status'   : result[0].status,		
 	    'disease'  : result[0].disease,
 	    'jobIndustry' : result[0].jobIndustry
 	});
+	 //    response.json({
+		// 'username' : result[0].username,
+		// 'userid'   : result[0].userid,
+		// 'gcm'      : gcm,
+		// 'status'   : result[0].status,		
+		// 'disease'  : result[0].disease,
+		// 'jobIndustry' : result[0].jobIndustry
+	 //    });
+	}
+	
+
+	// response.render('profile', {
+	//     'username' : result[0].username,
+	//     // 'status'   : result[0].status,		
+	//     'disease'  : result[0].disease,
+	//     'jobIndustry' : result[0].jobIndustry
+	// });
     });
 
 });

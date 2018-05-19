@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngelHack</title>
+<link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="/stylesheets/stylesheet.css" rel="stylesheet">
+</head>
+<body>
+
+  <!--topicsを設定-->
+  <div class="form-group">
+    <label for="input_topics">[topicsを設定]：</label>
+    <br>
+    <input type="text" name="input_topics" id="input_topics" class="form-control">
+  </div>
+  <br>
+  <div class="form-group">
+    <button id="btn_topics" onclick="input_topics();">設定ボタン</button>
+  </div>
+  <br>
+
+  <!-- チャットログ出力 -->
+  <div class="form-group-box_logs">
+    <pre name="set_topics" id="set_topics"></pre>
+    <label for="box_logs">チャット履歴：</lavel>
+    <pre id="box_logs_shh"></pre>
+  </div>
+
+  <!--メッセージ送信情報をセット-->
+  <div class="form-group">
+    <!--payloadを入力-->
+    <label for="input_payload">[チャットメッセージ(payload)]：</label>
+    <br>
+    <input type="text" name="input_payload" id="input_payload" class="form-control">
+  </div>
+  <br>
+  <div class="form-group">
+    <button id="btn_push" onclick="input_push();">送信ボタン</button>
+  </div>
+
+  <!--参照先scriptを記載-->
+  <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.min.js"></script> -->
+  <!-- <script type="text/javascript" src="../lib/connect_web3.js"></script> -->
+  <!-- <script type="text/javascript" src="./javascripts/exec_test_shh.js"></script> -->
+
+</body>
+</html>
