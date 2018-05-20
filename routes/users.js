@@ -60,14 +60,13 @@ router.get('/profile', function(request, response){
 			console.log(err);
 		});
 
-	response.render('profile', {
-	    'username' : result[0].username,
-	    // 'status'   : result[0].status,		
-	    'disease'  : result[0].disease,
-	    'jobIndustry' : result[0].jobIndustry
-	});
-	 //    response.json({
-		// 'username' : result[0].username,
+	    response.render('profile', {
+		'username' : result[0].username,
+		'disease'  : result[0].disease,
+		'jobIndustry' : result[0].jobIndustry
+	    });
+	    //    response.json({
+	    // 'username' : result[0].username,
 		// 'userid'   : result[0].userid,
 		// 'gcm'      : gcm,
 		// 'status'   : result[0].status,		
@@ -76,15 +75,31 @@ router.get('/profile', function(request, response){
 	 //    });
 	}
 	
-
-	// response.render('profile', {
-	//     'username' : result[0].username,
-	//     // 'status'   : result[0].status,		
-	//     'disease'  : result[0].disease,
-	//     'jobIndustry' : result[0].jobIndustry
-	// });
     });
 
+});
+
+router.get('/getMentorList', function(request, response){
+
+    const userid = request.query.userid;
+    const gcm    = request.query.gcm;
+
+    const query = {  "userid" : { '$ne' : userid } };
+
+    UserInfo.find( query, function(err, result){
+	if (err)	      
+	    console.log(err); 
+
+	if (result.length == 0){
+	    response.json({'status':2});
+	}
+	else{
+	    let mentorList = {
+		'mentorList' : result
+	    };
+	    response.json(mentorList);
+	}
+    });
 });
 
 module.exports = router;
