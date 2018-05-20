@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var UserInfo = new Schema({
     username : { type: String, require: true },
+    firstname : {type: String, require: true},
     userid   : { type: String, require: true },
     gcm      : { type: String },
     status   : { type: Boolean, require: true},

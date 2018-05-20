@@ -13,12 +13,12 @@
 <body>
 
 <div class="requestWrapper">
-  <h4>渡辺さんに<br>メンター依頼を<br>届けますか？</h4>
+  <h4><%= listener %>さんに<br>メンター依頼を<br>届けますか？</h4>
   <div class="requestContainer">
     <div class="requestPeer">
       <div class="peerContainer">
         <span class="userAvatar"><i class="fas fa-user-circle"></i></span>
-        <p data-name="userName">田中<span>さん</span></p>
+        <p data-name="userName"><%= talker %><span>さん</span></p>
       </div>
       <div class="sendMail">
         <i class="fas fa-angle-double-right"></i>
@@ -27,7 +27,7 @@
       </div>
       <div class="peerContainer">
         <span class="userAvatar"><i class="fas fa-user-circle"></i></span>
-        <p data-name="userName">渡辺<span>さん</span></p>
+        <p data-name="userName"><%= listener %><span>さん</span></p>
       </div>
     </div>
     <p class="timeBlock">

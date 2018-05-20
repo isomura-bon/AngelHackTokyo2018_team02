@@ -10,6 +10,7 @@ router.post('/regist', function(request, response) {
     console.log(request.body);
 
     var username = request.body.username;
+    var firstname = request.body.firstname;
     var userid   = request.body.userid;
     var gcm	 = request.body.gcm;
     var status	 = request.body.status;
@@ -25,6 +26,7 @@ router.post('/regist', function(request, response) {
 	    var user = new UserInfo();
 
 	    user.username = username;
+	    user.firstname = firstname;
 	    user.userid   = userid;
 	    user.gcm      = gcm;
 	    user.status   = status;
@@ -62,6 +64,7 @@ router.get('/profile', function(request, response){
 
 	    response.render('profile', {
 		'username' : result[0].username,
+		'firstname' : result[0].firstname,
 		'disease'  : result[0].disease,
 		'jobIndustry' : result[0].jobIndustry
 	    });

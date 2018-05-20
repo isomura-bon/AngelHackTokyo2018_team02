@@ -1,6 +1,7 @@
 $(window).load(function(){
 
     let talker = $('#userName').text();
+    talker = talker.slice(0,2);
 
     var hostUrl = 'http://localhost:3000/users/getMentorList?userid=1';
     $.ajax({
@@ -14,6 +15,7 @@ $(window).load(function(){
 
 	    for (var i = 0; i < result.mentorList.length; i++){
 		var username    = result.mentorList[i].username;
+		var firstname   = result.mentorList[i].firstname;
 		var gcm		= result.mentorList[i].gcm;
 		var disease	= result.mentorList[i].disease;
 		var jobIndustry = result.mentorList[i].jobIndustry;
@@ -24,7 +26,7 @@ $(window).load(function(){
 			'<div class="recommendCard">' +
 			    '<span data-name="userAvatar"><i class="fas fa-user-circle"></i></span>' +
 			    '<div>' +
-			    '<p data-name="userName">'+ username +'</p>'+
+			    '<p data-name="userName">'+ username + firstname +'</p>'+
 			    '<p class="subText">'+ disease +'</p>' +
 			    '<p class="subText">'+ jobIndustry +'</p>' +
 			    '</div>' +
@@ -40,7 +42,7 @@ $(window).load(function(){
 			'<div class="recommendCard">' +
 			    '<span data-name="userAvatar"><i class="fas fa-user-circle"></i></span>' +
 			    '<div>' +
-			    '<p data-name="userName">'+ username +'</p>'+
+			    '<p data-name="userName">'+ username + firstname +'</p>'+
 			    '<p class="subText">'+ disease +'</p>' +
 			    '<p class="subText">'+ jobIndustry +'</p>' +
 			    '</div>' +
